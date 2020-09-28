@@ -23,34 +23,44 @@
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
 
-        $.ajax({
-            url: urlPost,
-            method: "POST",
-            data: {
-                "NOME": $(this).find("#Nome").val(),
-                "CPF": $(this).find("#Cpf").val(),
-                "CEP": $(this).find("#CEP").val(),
-                "Email": $(this).find("#Email").val(),
-                "Sobrenome": $(this).find("#Sobrenome").val(),
-                "Nacionalidade": $(this).find("#Nacionalidade").val(),
-                "Estado": $(this).find("#Estado").val(),
-                "Cidade": $(this).find("#Cidade").val(),
-                "Logradouro": $(this).find("#Logradouro").val(),
-                "Telefone": $(this).find("#Telefone").val()
-            },
-            error:
-            function (r) {
-                if (r.status == 400)
-                    ModalDialog("Ocorreu um erro", r.responseJSON);
-                else if (r.status == 500)
-                    ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
-            },
-            success:
-            function (r) {
-                ModalDialog("Sucesso!", r)
-                $("#formCadastro")[0].reset();
-            }
-        });
+
+        if (!ValidaCpf(RemoveMask($(this).find("#Cpf").val()))) {
+            alert("CPF inválido");
+            return;
+        }
+        else
+        {
+            alert("CPF válido");
+
+            $.ajax({
+                url: urlPost,
+                method: "POST",
+                data: {
+                    "NOME": $(this).find("#Nome").val(),
+                    "CPF": RemoveMask($(this).find("#Cpf").val()),
+                    "CEP": $(this).find("#CEP").val(),
+                    "Email": $(this).find("#Email").val(),
+                    "Sobrenome": $(this).find("#Sobrenome").val(),
+                    "Nacionalidade": $(this).find("#Nacionalidade").val(),
+                    "Estado": $(this).find("#Estado").val(),
+                    "Cidade": $(this).find("#Cidade").val(),
+                    "Logradouro": $(this).find("#Logradouro").val(),
+                    "Telefone": $(this).find("#Telefone").val()
+                },
+                error:
+                    function (r) {
+                        if (r.status == 400)
+                            ModalDialog("Ocorreu um erro", r.responseJSON);
+                        else if (r.status == 500)
+                            ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
+                    },
+                success:
+                    function (r) {
+                        ModalDialog("Sucesso!", r)
+                        $("#formCadastro")[0].reset();
+                    }
+            });
+        }        
     })
     
 })

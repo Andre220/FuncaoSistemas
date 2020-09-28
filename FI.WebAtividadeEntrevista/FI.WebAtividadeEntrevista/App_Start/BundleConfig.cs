@@ -44,11 +44,12 @@ namespace WebAtividadeEntrevista
                       "~/Scripts/jtable/themes/metro/darkgray/jtable.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
-                        "~/Scripts/jquery-{version}.js",
                       "~/Scripts/inputmask/inputmask.js",
                       "~/Scripts/inputmask/jquery.inputmask.js"));
 
 
+            bundles.Add(new ScriptBundle("~/bundles/validadorCPF").Include(
+                      "~/Scripts/validadorCPF.js"));
         }
     }
 }

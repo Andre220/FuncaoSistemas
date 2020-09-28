@@ -3,11 +3,13 @@
     ViewBag.Title = "Cadastrar Cliente";
 }
 @section scripts{
+    @Scripts.Render("~/bundles/inputmask")
     <script>
         var urlPost = '@Url.Action("Incluir", "Cliente", new { area = "" })';
 
         $(document).ready(function () {
-            $("#Cpf").inputmask({"mask": "999.999.999-99" });
+            $("#Cpf").inputmask("999.999.999-99");
+            console.log($("#Cpf"));
         })
     </script>
     @Scripts.Render("~/bundles/clientes")

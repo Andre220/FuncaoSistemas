@@ -1,6 +1,6 @@
 ﻿function ValidaCpf(strCPF)
 {
-    //Fonte: http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/funcoes.js
+    //Fontes: http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/funcoes.js
     var Soma;
     var Resto;
     Soma = 0;
@@ -8,22 +8,12 @@
     strCPF = RemoveMask(strCPF);
 
     //Verificando se todos os números são iguais = CPF inválido, apesar de passar na validação númerica 
-    var lastChar;
-    for (var i = 1; i < strCPF.Lenght; i++)
+    var caracteresIguais = /^(.)\1+$/.test(strCPF); // usando Regex para testar se todos os caracteres sao iguais
+
+    if (caracteresIguais == true)
     {
-        if (i > 1)
-        {
-
-        }
-        else
-        {
-            lastChar = strCPF[i];
-        }
+        return;
     }
-
-    if (strCPF == "00000000000")
-        return false;
-        
 
     //Verificando o primeiro digito
     for (i = 1; i <= 9; i++)
@@ -64,5 +54,5 @@ function RemoveMask(cpf)
     strValue = strValue.replace("/", "");
     strValue = strValue.replace("/", "");
 
-    return cpf;
+    return strValue;
 }
