@@ -5,6 +5,10 @@
 @section scripts{
     <script>
         var urlPost = '@Url.Action("Incluir", "Cliente", new { area = "" })';
+
+        $(document).ready(function () {
+            $("#Cpf").inputmask({"mask": "999.999.999-99" });
+        })
     </script>
     @Scripts.Render("~/bundles/clientes")
 }

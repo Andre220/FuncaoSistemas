@@ -1,11 +1,17 @@
-﻿$(document).ready(function ()
+﻿
+
+$(document).ready(function ()
 {
-    $('#formBeneficiario').click(function (e) {
+    $('#SendBeneficiario').click(function (e) {
         e.preventDefault();
 
         $.ajax({
-            url: '/Beneficiario/Index',
-            method: "GET",
+            url: '/Beneficiario/Incluir',
+            method: "POST",
+            data: {
+                "NOME": $(this).find("#beneficiarioNome").val(),
+                "CPF": $(this).find("#beneficiarioCpf").val(),
+            },
             error:
                 function (r) {
                     if (r.status == 400)
@@ -15,10 +21,14 @@
                 },
             success:
                 function (r) {
-                    ModalDialog("Inserir Beneficiário", r)
+                    $('#gridbeneficiarios').append(
+                        '<tr>' +
+                        '<th>' + $(this).find("#beneficiariocpf").val(), +'</th>' +
+                        '<th>' + $(this).find("#beneficiarionome").val(), +'</th>' +
+                    '</tr>');
                 }
         });
-    })
+    })   
 })
 
 function ModalDialog(titulo, texto) {

@@ -38,7 +38,6 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
-
                 model.Id = bo.Incluir(new Cliente()
                 {
                     CPF = model.CPF,
@@ -50,7 +49,8 @@ namespace WebAtividadeEntrevista.Controllers
                     Nacionalidade = model.Nacionalidade,
                     Nome = model.Nome,
                     Sobrenome = model.Sobrenome,
-                    Telefone = model.Telefone
+                    Telefone = model.Telefone,
+                    Beneficiarios = model.Beneficiarios
                 });
 
                 if (model.Id == 0)

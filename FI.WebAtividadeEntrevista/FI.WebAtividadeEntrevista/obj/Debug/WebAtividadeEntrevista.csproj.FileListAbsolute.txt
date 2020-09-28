@@ -150,6 +150,8 @@ C:\Trabalho\TestePratico\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\FI.
 C:\Trabalho\TestePratico\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.csproj.CopyComplete
 C:\Trabalho\TestePratico\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.dll
 C:\Trabalho\TestePratico\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.pdb
+C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.csprojAssemblyReference.cache
+C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.csproj.CoreCompileInputs.cache
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\bin\ApplicationInsights.config
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\bin\WebAtividadeEntrevista.dll.config
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\bin\WebAtividadeEntrevista.dll
@@ -196,8 +198,6 @@ C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\bin\Microsoft.AI.Web.xml
-C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.csprojAssemblyReference.cache
-C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.csproj.CoreCompileInputs.cache
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.csproj.CopyComplete
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.dll
 C:\Users\Andre\Projetos\Versionados\FuncaoSistemas\FI.WebAtividadeEntrevista\FI.WebAtividadeEntrevista\obj\Debug\WebAtividadeEntrevista.pdb

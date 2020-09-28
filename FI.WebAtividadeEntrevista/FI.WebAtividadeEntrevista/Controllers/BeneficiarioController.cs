@@ -17,7 +17,8 @@ namespace WebAtividadeEntrevista.Controllers
             return View();
         }
 
-        public ActionResult BeneficiarioIncluir(BeneficiarioModel model)
+        [HttpPost]
+        public ActionResult Incluir(BeneficiarioModel model)
         {
             BoBeneficiario bo = new BoBeneficiario();
 
@@ -32,20 +33,41 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
-                model.Id = bo.Incluir(new Beneficiario()
-                {
-                    CPF = model.CPF,
-                    Nome = model.Nome,
-                    IdCliente = model.IdCliente
-                });
 
-                if (model.Id == 0)
+                if (bo.VerificarExistencia(model.CPF))
                 {
                     return Json("CPF já cadastrado!");
                 }
                 else
                 {
-                    return Json("Cadastro efetuado com sucesso");
+                    return Json("Beneficiario inserido com sucesso");
+                }
+            }
+        }
+
+        public ActionResult ConfirmarCPF(BeneficiarioModel model)
+        {
+            BoBeneficiario bo = new BoBeneficiario();
+
+            if (!this.ModelState.IsValid)
+            {
+                List<string> erros = (from item in ModelState.Values
+                                      from error in item.Errors
+                                      select error.ErrorMessage).ToList();
+
+                Response.StatusCode = 400;
+                return Json(string.Join(Environment.NewLine, erros));
+            }
+            else
+            {
+
+                if (bo.VerificarExistencia(model.CPF))
+                {
+                    return Json("CPF já cadastrado!");
+                }
+                else
+                {
+                    return Json("Beneficiario inserido com sucesso");
                 }
             }
         }
