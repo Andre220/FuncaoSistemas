@@ -1,12 +1,15 @@
 ﻿
-$(document).ready(function () {
+$(document).ready(function ()
+{
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
+
         $.ajax({
             url: urlPost,
             method: "POST",
             data: {
                 "NOME": $(this).find("#Nome").val(),
+                "CPF": $("#formCadastro").find("#Cpf").val(),
                 "CEP": $(this).find("#CEP").val(),
                 "Email": $(this).find("#Email").val(),
                 "Sobrenome": $(this).find("#Sobrenome").val(),

@@ -38,9 +38,10 @@ namespace WebAtividadeEntrevista.Controllers
             }
             else
             {
-                
+
                 model.Id = bo.Incluir(new Cliente()
-                {                    
+                {
+                    CPF = model.CPF,
                     CEP = model.CEP,
                     Cidade = model.Cidade,
                     Email = model.Email,
@@ -52,8 +53,14 @@ namespace WebAtividadeEntrevista.Controllers
                     Telefone = model.Telefone
                 });
 
-           
-                return Json("Cadastro efetuado com sucesso");
+                if (model.Id == 0)
+                {
+                    return Json("CPF já cadastrado!");
+                }
+                else
+                {
+                    return Json("Cadastro efetuado com sucesso");
+                }
             }
         }
 

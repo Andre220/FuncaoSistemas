@@ -19,9 +19,18 @@ namespace FI.AtividadeEntrevista.DAL
         /// <param name="cliente">Objeto de cliente</param>
         internal long Incluir(DML.Cliente cliente)
         {
+            long ret = 0;
+
+            if (VerificarExistencia(cliente.CPF))
+            {
+                ret = 0;
+                return ret;
+            }
+
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
-            
+
             parametros.Add(new System.Data.SqlClient.SqlParameter("Nome", cliente.Nome));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("CPF", cliente.CPF));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Sobrenome", cliente.Sobrenome));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Nacionalidade", cliente.Nacionalidade));
             parametros.Add(new System.Data.SqlClient.SqlParameter("CEP", cliente.CEP));
@@ -32,14 +41,13 @@ namespace FI.AtividadeEntrevista.DAL
             parametros.Add(new System.Data.SqlClient.SqlParameter("Telefone", cliente.Telefone));
 
             DataSet ds = base.Consultar("FI_SP_IncClienteV2", parametros);
-            long ret = 0;
             if (ds.Tables[0].Rows.Count > 0)
                 long.TryParse(ds.Tables[0].Rows[0][0].ToString(), out ret);
             return ret;
         }
 
         /// <summary>
-        /// Inclui um novo cliente
+        /// Busca por cliente no banco, através do Id dele
         /// </summary>
         /// <param name="cliente">Objeto de cliente</param>
         internal DML.Cliente Consultar(long Id)
@@ -54,6 +62,11 @@ namespace FI.AtividadeEntrevista.DAL
             return cli.FirstOrDefault();
         }
 
+        /// <summary>
+        /// Verifica a existencia do cliente com base no CPF dele
+        /// </summary>
+        /// <param name="CPF">CPF do cliente</param>
+        /// <returns></returns>
         internal bool VerificarExistencia(string CPF)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
@@ -64,6 +77,7 @@ namespace FI.AtividadeEntrevista.DAL
 
             return ds.Tables[0].Rows.Count > 0;
         }
+
 
         internal List<Cliente> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
         {

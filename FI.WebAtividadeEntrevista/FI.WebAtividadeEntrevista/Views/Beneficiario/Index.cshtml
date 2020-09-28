@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+@section scripts{
+    <script>
+        //var urlGet = '@Url.Action("Index", "Beneficiario", new { area = "" })';
+        var urlPost = '@Url.Action("Incluir", "Beneficiario", new { area = "" })';
+        var urlAlteracao = '@Url.Action("Alterar", "Beneficiario", new { area = "" })';
+        var urlBeneficiarioList = '@Url.Action("BeneficiarioList", "Beneficiario", new { area = "" })';
+    </script>
+    @Scripts.Render("~/bundles/beneficiarios")
+}
+
+<form id="formCadastro" method="get">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="nome">cpf:</label>
+                <input required="required" type="text" class="form-control" id="cpf" name="cpf" placeholder="ex.: 010.011.111-00" maxlength="50">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <label for="sobrenome">nome:</label>
+                <input required="required" type="text" class="form-control" id="nome" name="nome" placeholder="ex.: da silva" maxlength="255">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button style="margin-top: 24px; height: 32px;" type="submit" id="formbeneficiario" class="btn btn-sm btn-success">incluir</button>
+        </div>
+        <hr>
+        @* Lista de beneficiários *@
+        <table id="gridClientes" class="table"></table>
+</form>
