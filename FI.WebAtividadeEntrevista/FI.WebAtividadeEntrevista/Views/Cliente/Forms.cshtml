@@ -80,7 +80,8 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="pull-left">
-                @Html.ActionLink("Beneficiario", "Index", "Beneficiario", new { }, new { @class = "btn btn-sm btn-primary pull-right" })
+                @*@Html.ActionLink("Beneficiario", "Index", "Beneficiario", new { }, new { @class = "btn btn-sm btn-primary pull-right" })*@
+                <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#BeneficiarioModal">Beneficiarios</button>
             </div>
             <div class="pull-right">
                 <button type="submit" class="btn btn-sm btn-success">Salvar</button>
@@ -88,6 +89,49 @@
             </div>
         </div>
     </div>
-
-
 </form>
+
+@* Modal do beneficiário *@
+<div id="BeneficiarioModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Beneficiários</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formCadastroBeneficiario" method="get">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="nome">cpf:</label>
+                                <input required="required" type="text" class="form-control" id="beneficiarioCpf" name="beneficiarioCpf" placeholder="ex.: 010.011.111-00" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <label for="sobrenome">nome:</label>
+                                <input required="required" type="text" class="form-control" id="beneficiarioNome" name="beneficiarioCpfNome" placeholder="ex.: da silva" maxlength="255">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button style="margin-top: 24px; height: 32px;" type="submit" id="SendBeneficiario" class="btn btn-sm btn-success">incluir</button>
+                        </div>
+                    </div>
+                    @* Lista de beneficiários *@
+                    <table id="gridBeneficiarios" class="table">
+                        <tr>
+                            <th>CPF</th>
+                            <th>Nome</th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

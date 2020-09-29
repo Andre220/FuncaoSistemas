@@ -1,28 +1,33 @@
-﻿$(document).ready(function ()
+﻿var beneficiarios = [];
+
+$(document).ready(function ()
 {
-    $('#formCadastroBeneficiario').on("click", function (e) {
+
+    var countBeneficiarios = 0;  
+    $('#formCadastroBeneficiario').submit(function (e)
+    {
         e.preventDefault();
 
-        $.ajax({
-            url: '/Beneficiario/Index',
-            method: "GET",
-            error:
-                function (r) {
-                    if (r.status == 400)
-                        ModalDialog("Ocorreu um erro", r.responseJSON);
-                    else if (r.status == 500)
-                        ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
-                },
-            success:
-                function (r) {
-                    BeneficiarioModal("Inserir Beneficiário", r)
-                }
+        countBeneficiarios += 1;
+
+        $('table tbody').append(
+            '<tr> <td id="' + countBeneficiarios + '">' +
+            $("#formCadastroBeneficiario").find("#beneficiarioCpf").val() +
+            '</td> <td>' +
+            $("#formCadastroBeneficiario").find("#beneficiarioNome").val()
+            + '</td> </tr>');
+
+
+        beneficiarios.push({
+            //"id": countBeneficiarios,
+            "CPF": $(this).find("#beneficiarioCpf").val(),
+            "Nome": $(this).find("#beneficiarioNome").val(),
+            //"idCliente": null,
         });
     })
 
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
-
 
         if (!ValidaCpf(RemoveMask($(this).find("#Cpf").val()))) {
             alert("CPF inválido");
@@ -30,7 +35,15 @@
         }
         else
         {
-            alert("CPF válido");
+            $("#formCadastroBeneficiario tbody tr").each(function (i)
+            {
+                var line = $(this);
+                var cells = line.find('td');
+                $(cells).each(function (j) {
+                    var info = $(this);
+                    console.log(info.text());
+                })
+            })
 
             $.ajax({
                 url: urlPost,
@@ -45,7 +58,9 @@
                     "Estado": $(this).find("#Estado").val(),
                     "Cidade": $(this).find("#Cidade").val(),
                     "Logradouro": $(this).find("#Logradouro").val(),
-                    "Telefone": $(this).find("#Telefone").val()
+                    "Telefone": $(this).find("#Telefone").val(),
+                    "Beneficiarios": beneficiarios 
+                    //"Beneficiarios": JSON.stringify({ 'beneficiarios': beneficiarios}) 
                 },
                 error:
                     function (r) {
@@ -87,28 +102,4 @@ function ModalDialog(titulo, texto) {
 
     $('body').append(texto);
     $('#' + random).modal('show');
-}
-
-
-function BeneficiarioModal(titulo, texto) {
-    var texto = '<div id="BeneficiarioModal" class="modal fade">                                                               ' +
-        '        <div class="modal-dialog">                                                                                 ' +
-        '            <div class="modal-content">                                                                            ' +
-        '                <div class="modal-header">                                                                         ' +
-        '                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>         ' +
-        '                    <h4 class="modal-title">' + titulo + '</h4>                                                    ' +
-        '                </div>                                                                                             ' +
-        '                <div class="modal-body">                                                                           ' +
-        '                    <p>' + texto + '</p>                                                                           ' +
-        '                </div>                                                                                             ' +
-        '                <div class="modal-footer">                                                                         ' +
-        '                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>             ' +
-        '                                                                                                                   ' +
-        '                </div>                                                                                             ' +
-        '            </div><!-- /.modal-content -->                                                                         ' +
-        '  </div><!-- /.modal-dialog -->                                                                                    ' +
-        '</div> <!-- /.modal -->                                                                                        ';
-
-    $('body').append(texto);
-    $('#' + 'BeneficiarioModal').modal('show');
 }

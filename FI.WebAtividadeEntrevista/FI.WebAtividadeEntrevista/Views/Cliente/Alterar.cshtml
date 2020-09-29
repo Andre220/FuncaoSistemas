@@ -3,11 +3,16 @@
     ViewBag.Title = "Alterar Cliente";
 }
 @section scripts{
-<script>
+    @Scripts.Render("~/bundles/inputmask")
+    <script>
         var urlPost = '@Url.Action("Alterar", "Cliente", new { area = "" })';
         var obj = @Html.Raw(Json.Encode(Model));
         var urlRetorno = '@Url.Action("Index", "Cliente", new { area = "" })';
-</script>
+
+        $(document).ready(function () {
+            $("#Cpf").inputmask("999.999.999-99");
+        })
+    </script>
     @Scripts.Render("~/bundles/altClientes")
 }
 <h2>@Html.Raw(ViewBag.Title)</h2>

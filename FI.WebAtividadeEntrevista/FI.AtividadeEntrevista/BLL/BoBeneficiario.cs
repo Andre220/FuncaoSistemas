@@ -53,20 +53,20 @@ namespace FI.AtividadeEntrevista.BLL
         /// <summary>
         /// Lista os beneficiários
         /// </summary>
-        public List<DML.Beneficiario> Listar()
+        public List<DML.Beneficiario> Listar(int id)
         {
             DAL.DaoBeneficiario cli = new DAL.DaoBeneficiario();
-            return cli.Listar();
+            return cli.Listar(id);
         }
 
         /// <summary>
         /// Lista os beneficiário
         /// </summary>
-        //public List<DML.Beneficiario> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
-        //{
-        //    DAL.DaoBeneficiario cli = new DAL.DaoBeneficiario();
-        //    return cli.Pesquisa(iniciarEm, quantidade, campoOrdenacao, crescente, out qtd);
-        //}
+        public List<DML.Beneficiario> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
+        {
+            DAL.DaoBeneficiario cli = new DAL.DaoBeneficiario();
+            return cli.Pesquisa(iniciarEm, quantidade, campoOrdenacao, crescente, out qtd);
+        }
 
         /// <summary>
         /// Verifica Existencia de beneficiário pelo CPF

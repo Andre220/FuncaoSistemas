@@ -70,36 +70,36 @@ namespace FI.AtividadeEntrevista.DAL
             return ds.Tables[0].Rows.Count > 0;
         }
 
-        //internal List<Beneficiario> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
-        //{
-        //    List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
+        internal List<Beneficiario> Pesquisa(int iniciarEm, int quantidade, string campoOrdenacao, bool crescente, out int qtd)
+        {
+            List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
-        //    parametros.Add(new System.Data.SqlClient.SqlParameter("iniciarEm", iniciarEm));
-        //    parametros.Add(new System.Data.SqlClient.SqlParameter("quantidade", quantidade));
-        //    parametros.Add(new System.Data.SqlClient.SqlParameter("campoOrdenacao", campoOrdenacao));
-        //    parametros.Add(new System.Data.SqlClient.SqlParameter("crescente", crescente));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("iniciarEm", iniciarEm));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("quantidade", quantidade));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("campoOrdenacao", campoOrdenacao));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("crescente", crescente));
 
-        //    DataSet ds = base.Consultar("FI_SP_PesqCliente", parametros);
-        //    List<DML.Cliente> cli = Converter(ds);
+            DataSet ds = base.Consultar("FI_SP_PesqCliente", parametros);
+            List<DML.Beneficiario> cli = Converter(ds);
 
-        //    int iQtd = 0;
+            int iQtd = 0;
 
-        //    if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
-        //        int.TryParse(ds.Tables[1].Rows[0][0].ToString(), out iQtd);
+            if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                int.TryParse(ds.Tables[1].Rows[0][0].ToString(), out iQtd);
 
-        //    qtd = iQtd;
+            qtd = iQtd;
 
-        //    return cli;
-        //}
+            return cli;
+        }
 
         /// <summary>
         /// Lista todos os beneficiários
         /// </summary>
-        internal List<DML.Beneficiario> Listar()
+        internal List<DML.Beneficiario> Listar(int id)
         {
             List<System.Data.SqlClient.SqlParameter> parametros = new List<System.Data.SqlClient.SqlParameter>();
 
-            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", 0));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("Id", id));
 
             DataSet ds = base.Consultar("FI_SP_ConsBeneficiarios", parametros);
             List<DML.Beneficiario> cli = Converter(ds);

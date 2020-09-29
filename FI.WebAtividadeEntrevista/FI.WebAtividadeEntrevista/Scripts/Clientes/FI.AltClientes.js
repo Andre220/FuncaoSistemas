@@ -10,39 +10,76 @@ $(document).ready(function () {
         $('#formCadastro #Cidade').val(obj.Cidade);
         $('#formCadastro #Logradouro').val(obj.Logradouro);
         $('#formCadastro #Telefone').val(obj.Telefone);
+        $('#formCadastro #Cpf').val(obj.CPF);
     }
 
     $('#formCadastro').submit(function (e) {
         e.preventDefault();
-        
-        $.ajax({
-            url: urlPost,
-            method: "POST",
-            data: {
-                "NOME": $(this).find("#Nome").val(),
-                "CEP": $(this).find("#CEP").val(),
-                "Email": $(this).find("#Email").val(),
-                "Sobrenome": $(this).find("#Sobrenome").val(),
-                "Nacionalidade": $(this).find("#Nacionalidade").val(),
-                "Estado": $(this).find("#Estado").val(),
-                "Cidade": $(this).find("#Cidade").val(),
-                "Logradouro": $(this).find("#Logradouro").val(),
-                "Telefone": $(this).find("#Telefone").val()
-            },
-            error:
-            function (r) {
-                if (r.status == 400)
-                    ModalDialog("Ocorreu um erro", r.responseJSON);
-                else if (r.status == 500)
-                    ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
-            },
-            success:
-            function (r) {
-                ModalDialog("Sucesso!", r)
-                $("#formCadastro")[0].reset();                                
-                window.location.href = urlRetorno;
-            }
-        });
+
+        if (!ValidaCpf(RemoveMask($(this).find("#Cpf").val()))) {
+            alert("CPF inválido");
+            return;
+        }
+        else {
+            $.ajax({
+                url: urlPost,
+                method: "POST",
+                data: {
+                    "NOME": $(this).find("#Nome").val(),
+                    "CPF": RemoveMask($(this).find("#Cpf").val()),
+                    "CEP": $(this).find("#CEP").val(),
+                    "Email": $(this).find("#Email").val(),
+                    "Sobrenome": $(this).find("#Sobrenome").val(),
+                    "Nacionalidade": $(this).find("#Nacionalidade").val(),
+                    "Estado": $(this).find("#Estado").val(),
+                    "Cidade": $(this).find("#Cidade").val(),
+                    "Logradouro": $(this).find("#Logradouro").val(),
+                    "Telefone": $(this).find("#Telefone").val()
+                },
+                error:
+                    function (r) {
+                        if (r.status == 400)
+                            ModalDialog("Ocorreu um erro", r.responseJSON);
+                        else if (r.status == 500)
+                            ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
+                    },
+                success:
+                    function (r) {
+                        ModalDialog("Sucesso!", r)
+                        $("#formCadastro")[0].reset();
+                    }
+            });
+        }
+
+        /*$.ajax({
+        //    url: urlPost,
+        //    method: "POST",
+        //    data: {
+        //        "NOME": $(this).find("#Nome").val(),
+        //        "CPF": $(this).find("#Cpf").val(),
+        //        "CEP": $(this).find("#CEP").val(),
+        //        "Email": $(this).find("#Email").val(),
+        //        "Sobrenome": $(this).find("#Sobrenome").val(),
+        //        "Nacionalidade": $(this).find("#Nacionalidade").val(),
+        //        "Estado": $(this).find("#Estado").val(),
+        //        "Cidade": $(this).find("#Cidade").val(),
+        //        "Logradouro": $(this).find("#Logradouro").val(),
+        //        "Telefone": $(this).find("#Telefone").val()
+        //    },
+        //    error:
+        //    function (r) {
+        //        if (r.status == 400)
+        //            ModalDialog("Ocorreu um erro", r.responseJSON);
+        //        else if (r.status == 500)
+        //            ModalDialog("Ocorreu um erro", "Ocorreu um erro interno no servidor.");
+        //    },
+        //    success:
+        //    function (r) {
+        //        ModalDialog("Sucesso!", r)
+        //        $("#formCadastro")[0].reset();                                
+        //        window.location.href = urlRetorno;
+        //    }
+        //});*/
     })
     
 })
